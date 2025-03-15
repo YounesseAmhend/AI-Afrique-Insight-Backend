@@ -30,16 +30,14 @@
         <java.version>23</java.version>
     </properties>
     <dependencies>
-        <!-- Commented out to prevent DataSource configuration error
         <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        -->
-        <!-- <dependency>
+        <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-security</artifactId>
-        </dependency> -->
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
