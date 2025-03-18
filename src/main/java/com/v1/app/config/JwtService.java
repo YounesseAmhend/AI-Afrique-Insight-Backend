@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -81,7 +82,9 @@ public class JwtService {
     }
 
     private Key getSignInkey() {
+        //this should be added to the application.yml
+//        String SECRET_KEY = "ceb59c2946c17462990c15a4e83e6b4abc567c17288790f33742ec05a0787024ae067e1c6dfcc1e048b97a3f554dbaafe56472bf22da33a82adf1f4fc4984e9035716ed99f444233e96005d614e31ec5bb9e913acca29aaed8d64d17fb00d53062b3bdb7325bce5cbcadfa815c5dfeceb037c6cfc245019da03a6d3011a0e1eb233df0536d445ab7c86038a9a7538eb055b6259628f4c3a123ca269a65ef5b8d9f5643e0c83f2a60a68c3c217245d0fa67a4b35ef002b258a9493f22c81969adfd21a1ea8d31c8b25847260abcef7e74d37fc5531b5cdd7d79230f4e2472168188bf32dbf63682a807bd9434daf28032e71271666d26a66ad9b24755ed159c45";
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
-        return null;
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 }
