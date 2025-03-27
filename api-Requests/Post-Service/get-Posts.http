@@ -1,0 +1,4 @@
+### GET request to get all posts
+GET https://localhost:8080/posts
+
+###
