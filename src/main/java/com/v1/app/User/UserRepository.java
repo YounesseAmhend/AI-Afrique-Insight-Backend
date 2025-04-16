@@ -1,11 +1,14 @@
 package com.v1.app.User;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User , Integer> { //here User is the entity this class is managing and Integer is telling it that the type of the primary Key(id) is an integer
+import org.springframework.data.jpa.repository.JpaRepository;
 
-    Optional<User> findByEmail(String email); //mo7arabate nullpointerexception hhhhhh and kayna chi 9wada we can use like .orElse()  or .orElseThrow() etc
+public interface UserRepository extends JpaRepository<User, Integer> { // here User is the entity this class is managing
+                                                                       // and Integer is telling it that the type of the
+                                                                       // primary Key(id) is an integer
+
+    Optional<User> findByEmail(String email); // mo7arabate nullpointerexception hhhhhh and kayna chi 9wada we can use
+                                              // like .orElse() or .orElseThrow() etc
 
 }
