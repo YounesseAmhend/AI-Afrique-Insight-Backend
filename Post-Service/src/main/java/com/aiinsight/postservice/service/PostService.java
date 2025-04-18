@@ -23,6 +23,8 @@ public class PostService {
     return postList.stream().map(PostMapper::toDto).toList();
   }
 
+
+
   public PostResponseDto addPost(PostRequestDto postRequestDto) {
     Post post = postRepository.save(PostMapper.toModel(postRequestDto));
     return PostMapper.toDto(post);
