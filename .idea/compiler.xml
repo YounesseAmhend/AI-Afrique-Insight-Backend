@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <annotationProcessing>
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="api-gateway" />
-        <module name="Post-Service" />
-        <module name="auth-service" />
-      </profile>
-    </annotationProcessing>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Post-Service" options="-parameters" />
-      <module name="api-gateway" options="-parameters" />
-      <module name="auth-service" options="-parameters" />
-    </option>
+    <bytecodeTargetLevel>
+      <module name="api-gateway" target="21" />
+      <module name="auth-service" target="21" />
+      <module name="Post-Service" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>
