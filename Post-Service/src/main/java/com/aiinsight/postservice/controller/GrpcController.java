@@ -1,9 +1,13 @@
 package com.aiinsight.postservice.controller;
 
+import com.aiinsight.postservice.dto.AddSourceRequest; // Import the DTO
 import com.aiinsight.postservice.grpc.PythonScrapingServiceGrpc;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping; // Import PostMapping
+import org.springframework.web.bind.annotation.RequestBody; // Import RequestBody
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import source.SourceProto; // Import SourceProto
 
 @RestController
 @RequestMapping("/grpc")
@@ -17,6 +21,18 @@ public class GrpcController {
 
   @GetMapping("/scrape")
   public String scrapeSources(){
-    return pythonScrapingServiceGrpc.scrapeSources().getMessage();
+    SourceProto.ScrapeResponse response = pythonScrapingServiceGrpc.scrapeSources();
+    return response.getMessage();
+  }
+
+  // New endpoint to add a source
+  @PostMapping("/sources")
+  public String addSource(@RequestBody AddSourceRequest request) {
+      SourceProto.SourceResponse response = pythonScrapingServiceGrpc.addSource(
+              request.getUrl(),
+              request.isContainsAiContent(),
+              request.isContainsAfricaContent()
+      );
+      return response.getMessage();
   }
 }

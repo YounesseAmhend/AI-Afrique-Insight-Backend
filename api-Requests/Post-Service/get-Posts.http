@@ -5,10 +5,3 @@ GET http://localhost:4000/posts
 
 
 GET http://localhost:4000/grpc/scrape
-Content-Type: application/json
-
-{
-  "title": "John Doe Kafka Test",
-  "content": "kafka_test11@example.com",
-  "author": "123 main street22"
-}
