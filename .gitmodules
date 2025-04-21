@@ -3,6 +3,3 @@
 [submodule "protos"]
 	path = protos
 	url = https://github.com/YounesseAmhend/Africa-Ai-Insights-Protos
-[submodule "src/main/protos"]
-	path = src/main/protos
-	url = https://github.com/YounesseAmhend/Africa-Ai-Insights-Protos

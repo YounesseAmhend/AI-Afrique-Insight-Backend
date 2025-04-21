@@ -14,3 +14,9 @@ gen-grpc:
 	protoc -I=. \
 		--java_out=./src/main/java/com/v1/app/grpc \
 		$(shell find protos -name "*.proto")  
+
+sub-modules:
+	git submodule update --recursive --remote --init
+
+
+	
