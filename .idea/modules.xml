@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AI-Insight-Project.iml" filepath="$PROJECT_DIR$/AI-Insight-Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Post-Service/Post-Service.iml" filepath="$PROJECT_DIR$/Post-Service/Post-Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/Scraping-Service/Scraping-Service.iml" filepath="$PROJECT_DIR$/Scraping-Service/Scraping-Service.iml" />
     </modules>
   </component>
