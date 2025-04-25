@@ -1,0 +1,11 @@
+C:\Users\pc\IdeaProjects\AI-Insight-Project\Post-Service\src\main\java\com\aiinsight\postservice\controller\PostController.java
+C:\Users\pc\IdeaProjects\AI-Insight-Project\Post-Service\src\main\java\com\aiinsight\postservice\dto\PostRequestDto.java
+C:\Users\pc\IdeaProjects\AI-Insight-Project\Post-Service\src\main\java\com\aiinsight\postservice\dto\PostResponseDto.java
+C:\Users\pc\IdeaProjects\AI-Insight-Project\Post-Service\src\main\java\com\aiinsight\postservice\exception\GlobalExceptionManager.java
+C:\Users\pc\IdeaProjects\AI-Insight-Project\Post-Service\src\main\java\com\aiinsight\postservice\mapper\PostMapper.java
+C:\Users\pc\IdeaProjects\AI-Insight-Project\Post-Service\src\main\java\com\aiinsight\postservice\model\Post.java
+C:\Users\pc\IdeaProjects\AI-Insight-Project\Post-Service\src\main\java\com\aiinsight\postservice\PostServiceApplication.java
+C:\Users\pc\IdeaProjects\AI-Insight-Project\Post-Service\src\main\java\com\aiinsight\postservice\repository\PostRepository.java
+C:\Users\pc\IdeaProjects\AI-Insight-Project\Post-Service\src\main\java\com\aiinsight\postservice\service\PostService.java
+C:\Users\pc\IdeaProjects\AI-Insight-Project\Post-Service\target\generated-sources\protobuf\grpc-java\source\SourceServiceGrpc.java
+C:\Users\pc\IdeaProjects\AI-Insight-Project\Post-Service\target\generated-sources\protobuf\java\source\SourceProto.java
