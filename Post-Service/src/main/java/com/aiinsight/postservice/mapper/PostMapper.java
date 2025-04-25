@@ -4,8 +4,6 @@ import com.aiinsight.postservice.dto.PostRequestDto;
 import com.aiinsight.postservice.dto.PostResponseDto;
 import com.aiinsight.postservice.model.Post;
 
-import java.util.List;
-
 public class PostMapper {
 
   public static PostResponseDto toDto(Post post) {
