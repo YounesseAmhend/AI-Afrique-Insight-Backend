@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package source;
+
+// Java package options
+// option java_package = "com.yourapp.source";
+option java_outer_classname = "SourceProto";
+
+message SourceRequest {
+  string url = 1;
+  bool containsAiContent = 2;  // Indicates if the source may contain AI-related articles
+  bool containsAfricaContent = 3;  // Indicates if the source may contain Africa-related articles
+}
+
+
+message SourceResponse {
+  string message = 1;
+}
+
+message ScrapeRequest {
+}
+
+message ScrapeResponse {
+  string message = 1;
+}
+
+
+service SourceService {
+  rpc addSource (SourceRequest) returns (SourceResponse) {}
+  rpc scrape (ScrapeRequest) returns (ScrapeResponse) {}
+}
