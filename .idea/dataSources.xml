@@ -13,7 +13,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="neondb@ep-broad-heart-a2v7pr2f-pooler.eu-central-1.aws.neon.tech" uuid="0dbd2c18-3e6b-4292-8ff6-b18322506217">
+    <data-source source="LOCAL" name="ep-broad-heart-a2v7pr2f-pooler.eu-central-1.aws.neon.tech" uuid="6fd5d864-2022-47f3-a28c-8c8ff85c9f58">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

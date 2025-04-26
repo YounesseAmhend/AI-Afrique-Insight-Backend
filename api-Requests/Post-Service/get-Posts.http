@@ -4,4 +4,4 @@ GET http://localhost:4000/posts
 ###
 
 
-GET http://localhost:4000/grpc/scrape
+GET http://localhost:4000/admin/grpc/scrape
