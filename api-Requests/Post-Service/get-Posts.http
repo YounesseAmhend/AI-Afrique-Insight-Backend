@@ -1,7 +1,10 @@
 ### GET request to get all posts
-GET http://localhost:4000/posts
+
+# GET http://localhost:4000/news
+GET http://localhost:8080/news
+
 
 ###
 
 
-GET http://localhost:4000/grpc/scrape
+# GET http://localhost:4000/grpc/scrape
