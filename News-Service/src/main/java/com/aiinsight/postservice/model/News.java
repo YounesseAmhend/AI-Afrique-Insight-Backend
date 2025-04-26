@@ -3,13 +3,13 @@ package com.aiinsight.postservice.model;
 import java.time.Instant;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumnn;
-
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -37,6 +37,15 @@ public class News {
 
     private Instant createdAt;
     private Instant postDate;
+
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
 
     public Long getId() {
         return id;
@@ -86,13 +95,6 @@ public class News {
         this.sourceId = sourceId;
     }
 
-    public Long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
-    }
 
     public Instant getCreatedAt() {
         return createdAt;
@@ -100,6 +102,10 @@ public class News {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Instant getPostDate() {
+        return postDate;
     }
 
     public Instant getNewsDate() {

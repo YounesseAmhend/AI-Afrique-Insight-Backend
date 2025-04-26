@@ -12,20 +12,19 @@ import com.aiinsight.postservice.repository.NewsRepository;
 
 @Service
 public class NewsService {
-    private final NewsRepository postRepository;
+    private final NewsRepository newsRepository;
 
     public NewsService(NewsRepository postRepository) {
-        this.postRepository = postRepository;
+        this.newsRepository = postRepository;
     }
 
     public List<NewsResponseDto> findAll() {
-        List<News> postList = postRepository.findAll();
-
-        return postList.stream().map(NewsMapper::toDto).toList();
+        List<News> newsList = newsRepository.findAll();
+        return newsList.stream().map(NewsMapper::toDto).toList();
     }
 
     public NewsResponseDto addNews(NewsRequestDto postRequestDto) {
-        News post = postRepository.save(NewsMapper.toModel(postRequestDto));
+        News post = newsRepository.save(NewsMapper.toModel(postRequestDto));
         return NewsMapper.toDto(post);
     }
 }

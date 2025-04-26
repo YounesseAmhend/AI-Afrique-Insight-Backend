@@ -1,33 +1,33 @@
 package com.aiinsight.postservice.mapper;
 
-import com.aiinsight.postservice.dto.NewsResponseDto;
 import com.aiinsight.postservice.dto.NewsRequestDto;
+import com.aiinsight.postservice.dto.NewsResponseDto;
 import com.aiinsight.postservice.model.News;
 
 public class NewsMapper {
 
-    public static NewsResponseDto toDto(News post) {
+    public static NewsResponseDto toDto(News news) {
         NewsResponseDto postRequestDto = new NewsResponseDto();
 
-        postRequestDto.setId(post.getId().toString());
-        postRequestDto.setTitle(post.getTitle());
-        postRequestDto.setBody(post.getBody());
-        postRequestDto.setUrl(post.getUrl());
-        postRequestDto.setImageUrl(post.getImageUrl());
-        postRequestDto.setAuthor(post.getAuthor() != null ? post.getAuthor().getName() : null);
-        postRequestDto.setCreatedAt(post.getCreatedAt());
-        postRequestDto.setPostDate(post.getPostDate());
+        postRequestDto.setId(news.getId().toString());
+        postRequestDto.setTitle(news.getTitle());
+        postRequestDto.setBody(news.getBody());
+        postRequestDto.setUrl(news.getUrl());
+        postRequestDto.setImageUrl(news.getImageUrl());
+        postRequestDto.setAuthor(news.getAuthor() != null ? news.getAuthor().getName() : null);
+        postRequestDto.setCreatedAt(news.getCreatedAt());
+        postRequestDto.setPostDate(news.getPostDate());
 
         return postRequestDto;
     }
 
     public static News toModel(NewsRequestDto postRequestDto) {
-        News post = new News();
-        post.setTitle(postRequestDto.getTitle());
-        post.setBody(postRequestDto.getBody());
-        post.setUrl(postRequestDto.getUrl());
-        post.setImageUrl(postRequestDto.getImageUrl());
-        post.setSourceId(postRequestDto.getSourceId());
-        return post;
+        News news = new News();
+        news.setTitle(postRequestDto.getTitle());
+        news.setBody(postRequestDto.getBody());
+        news.setUrl(postRequestDto.getUrl());
+        news.setImageUrl(postRequestDto.getImageUrl());
+        news.setSourceId(postRequestDto.getSourceId());
+        return news;
     }
 }
