@@ -58,6 +58,7 @@ public class NewsRequestDto {
         this.sourceId = sourceId;
     }
 
+
     public Long getAuthorId() {
         return authorId;
     }

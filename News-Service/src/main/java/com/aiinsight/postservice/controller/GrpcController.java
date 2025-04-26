@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import source.SourceProto; // Import SourceProto
 
 @RestController
-@RequestMapping("/admin/grpc") // why fucking gprc remove it stop doing unnecessary shit
+@RequestMapping("/admin/grpc")
 public class GrpcController {
 
   private final PythonScrapingServiceGrpc pythonScrapingServiceGrpc;
