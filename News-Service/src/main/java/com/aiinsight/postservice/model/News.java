@@ -38,6 +38,7 @@ public class News {
     private Instant createdAt;
     private Instant postDate;
 
+   
 
     public Author getAuthor() {
         return author;
@@ -94,7 +95,6 @@ public class News {
     public void setSourceId(Long sourceId) {
         this.sourceId = sourceId;
     }
-
 
     public Instant getCreatedAt() {
         return createdAt;

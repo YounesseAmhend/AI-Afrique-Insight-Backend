@@ -3,3 +3,6 @@
 [submodule "protos"]
 	path = protos
 	url = https://github.com/YounesseAmhend/Africa-Ai-Insights-Protos
+[submodule "scraper-service"]
+	path = scraper-service
+	url = https://github.com/YounesseAmhend/Africa-AI-Insight-Scraper.git
