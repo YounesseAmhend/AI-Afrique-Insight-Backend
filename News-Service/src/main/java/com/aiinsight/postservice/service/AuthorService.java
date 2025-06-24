@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.aiinsight.postservice.dto.AuthorResponseDto;
+import com.aiinsight.postservice.dto.AuthorNewsResponseDto;
 import com.aiinsight.postservice.dto.NewsResponseDto;
+import com.aiinsight.postservice.mapper.AuthorMapper;
 import com.aiinsight.postservice.mapper.NewsMapper;
 import com.aiinsight.postservice.model.Author;
 import com.aiinsight.postservice.repository.AuthorRepository;
@@ -25,10 +26,10 @@ public class AuthorService {
         return authorRepository.findAll();
     }
 
-    public AuthorResponseDto getAuthor(Long id) {
+    public AuthorNewsResponseDto getAuthor(Long id) {
         final List<NewsResponseDto> newsResponse = newsRepository.findAllByAuthorId(id).stream().map(NewsMapper::toDto)
                 .map(NewsResponseDto::limit).toList();
         final Author author = authorRepository.findById(id).orElseThrow(() -> new RuntimeException("Author not found"));
-        return new AuthorResponseDto(author, newsResponse);        
+        return new AuthorNewsResponseDto(AuthorMapper.toDto(author), newsResponse);        
     }
 }

@@ -43,9 +43,9 @@ public class NewsController {
 	}
 
 
-	@PostMapping
-	public ResponseEntity<NewsResponseDto> AddNews(@Valid @RequestBody NewsRequestDto postRequestDto) {
-		NewsResponseDto postResponseDto = newsService.addNews(postRequestDto);
-		return ResponseEntity.ok().body(postResponseDto);
-	}
+	// @PostMapping
+	// public ResponseEntity<NewsResponseDto> AddNews(@Valid @RequestBody NewsRequestDto postRequestDto) {
+	// 	NewsResponseDto postResponseDto = newsService.addNews(postRequestDto);
+	// 	return ResponseEntity.ok().body(postResponseDto);
+	// }
 }

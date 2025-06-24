@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aiinsight.postservice.dto.AuthorResponseDto;
+import com.aiinsight.postservice.dto.AuthorNewsResponseDto;
 import com.aiinsight.postservice.model.Author;
 import com.aiinsight.postservice.service.AuthorService;
 
@@ -29,8 +29,8 @@ public class AuthorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AuthorResponseDto> getAuthor(@PathVariable Long id) {
-        final AuthorResponseDto author = authorService.getAuthor(id);
+    public ResponseEntity<AuthorNewsResponseDto> getAuthor(@PathVariable Long id) {
+        final AuthorNewsResponseDto author = authorService.getAuthor(id);
         return ResponseEntity.ok().body(author);
     }
 

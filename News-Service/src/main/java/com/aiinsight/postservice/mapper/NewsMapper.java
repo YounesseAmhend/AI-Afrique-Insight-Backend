@@ -1,6 +1,5 @@
 package com.aiinsight.postservice.mapper;
 
-import com.aiinsight.postservice.dto.NewsRequestDto;
 import com.aiinsight.postservice.dto.NewsResponseDto;
 import com.aiinsight.postservice.model.News;
 
@@ -14,20 +13,23 @@ public class NewsMapper {
         postRequestDto.setBody(news.getBody());
         postRequestDto.setUrl(news.getUrl());
         postRequestDto.setImageUrl(news.getImageUrl());
-        postRequestDto.setAuthor(news.getAuthor() != null ? news.getAuthor().getName() : null);
+
+        postRequestDto.setAuthor(AuthorMapper.toDto(news.getAuthor()));
+
         postRequestDto.setCreatedAt(news.getCreatedAt());
         postRequestDto.setPostDate(news.getPostDate());
 
         return postRequestDto;
     }
 
-    public static News toModel(NewsRequestDto postRequestDto) {
-        News news = new News();
-        news.setTitle(postRequestDto.getTitle());
-        news.setBody(postRequestDto.getBody());
-        news.setUrl(postRequestDto.getUrl());
-        news.setImageUrl(postRequestDto.getImageUrl());
-        news.setSourceId(postRequestDto.getSourceId());
-        return news;
-    }
+    // public static News toModel(NewsRequestDto postRequestDto) {
+    // News news = new News();
+    // news.setTitle(postRequestDto.getTitle());
+    // news.setBody(postRequestDto.getBody());
+    // news.setUrl(postRequestDto.getUrl());
+    // news.setImageUrl(postRequestDto.getImageUrl());
+    // news.setAuthor(null); // TODO if We ever need it
+    // news.setSourceId(postRequestDto.getSourceId());
+    // return news;
+    // }
 }

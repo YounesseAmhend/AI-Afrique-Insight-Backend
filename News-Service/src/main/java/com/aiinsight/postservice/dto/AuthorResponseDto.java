@@ -1,15 +1,31 @@
 package com.aiinsight.postservice.dto;
 
-import java.util.List;
-
-import com.aiinsight.postservice.model.Author;
-
 public class AuthorResponseDto {
-    public final Author author;
-    public final List<NewsResponseDto> news;
-    
-    public AuthorResponseDto(Author author, List<NewsResponseDto> news) {
-        this.author = author;
-        this.news = news;
+    private Long id;
+    private String name;
+    private String url;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

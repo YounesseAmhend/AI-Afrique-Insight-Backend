@@ -8,13 +8,16 @@ public class NewsResponseDto {
     private String body;
     private String url;
     private String imageUrl;
-    private String author;
+    private AuthorResponseDto author;
     private Instant createdAt;
     private Instant postDate;
 
-    // Just to save bandwith only use this for list of news 
+    // Just to save bandwith only use this for list of news
     public NewsResponseDto limit() {
-        this.body = body.substring(0, Math.min(500, body.length()));
+        if (this.body != null) {
+            this.body = body.substring(0, Math.min(500, body.length()));
+        }
+        this.author = null;
         return this;
     }
 
@@ -58,12 +61,11 @@ public class NewsResponseDto {
         this.imageUrl = imageUrl;
     }
 
-
-    public String getAuthor() {
+    public AuthorResponseDto getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(AuthorResponseDto author) {
         this.author = author;
     }
 
@@ -82,4 +84,5 @@ public class NewsResponseDto {
     public void setPostDate(Instant postDate) {
         this.postDate = postDate;
     }
+
 }

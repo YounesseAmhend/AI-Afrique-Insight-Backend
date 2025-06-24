@@ -39,8 +39,8 @@ public class NewsService {
                 .toList();
     }
 
-    public NewsResponseDto addNews(NewsRequestDto postRequestDto) {
-        News post = newsRepository.save(NewsMapper.toModel(postRequestDto));
-        return NewsMapper.toDto(post);
-    }
+    // public NewsResponseDto addNews(NewsRequestDto postRequestDto) {
+    //     News post = newsRepository.save(NewsMapper.toModel(postRequestDto));
+    //     return NewsMapper.toDto(post);
+    // }
 }
