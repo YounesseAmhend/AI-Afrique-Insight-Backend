@@ -12,6 +12,12 @@ public class NewsResponseDto {
     private Instant createdAt;
     private Instant postDate;
 
+    // Just to save bandwith only use this for list of news 
+    public NewsResponseDto limit() {
+        this.body = body.substring(0, Math.min(500, body.length()));
+        return this;
+    }
+
     public String getId() {
         return id;
     }

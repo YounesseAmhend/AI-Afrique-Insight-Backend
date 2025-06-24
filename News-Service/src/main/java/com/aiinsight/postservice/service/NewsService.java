@@ -19,8 +19,24 @@ public class NewsService {
     }
 
     public List<NewsResponseDto> findAll() {
-        List<News> newsList = newsRepository.findAll();
-        return newsList.stream().map(NewsMapper::toDto).toList();
+        final List<News> newsList = newsRepository.findAll();
+        return newsList.stream()
+                .map(NewsMapper::toDto)
+                .map(NewsResponseDto::limit) // So we don't just send load of data while we are not going to use it
+
+                .toList();
+    }
+
+    public NewsResponseDto getNews(Long id) {
+        News news = newsRepository.findById(id).get();
+        return NewsMapper.toDto(news);
+    }
+
+    public List<NewsResponseDto> findByAuthorId(final Long id) {
+        final List<News> news = newsRepository.findAllByAuthorId(id);
+        return news.stream().map(NewsMapper::toDto)
+                .map(NewsResponseDto::limit) // So we don't just send load of data while we are not going to use it
+                .toList();
     }
 
     public NewsResponseDto addNews(NewsRequestDto postRequestDto) {
