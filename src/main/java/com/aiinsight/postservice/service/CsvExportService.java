@@ -24,7 +24,10 @@ public class CsvExportService {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintWriter writer = new PrintWriter(out);
         CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
-            .withHeader("ID", "Title", "Body", "URL", "Image URL", "Source ID", "Author Name", "Created At", "Post Date"));
+            .builder()
+            .setHeader("ID", "Title", "Body", "URL", "Image URL", "Source ID", "Author Name", "Created At", "Post Date")
+            .build()
+        );
     ) {
       for (News news : newsList) {
         String authorName = (news.getAuthor() != null) ? news.getAuthor().getName() : "N/A";
