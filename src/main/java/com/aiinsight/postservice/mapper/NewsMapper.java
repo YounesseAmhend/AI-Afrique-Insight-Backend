@@ -13,6 +13,12 @@ public class NewsMapper {
         postRequestDto.setBody(news.getBody());
         postRequestDto.setUrl(news.getUrl());
         postRequestDto.setImageUrl(news.getImageUrl());
+        
+        if (news.getCateogory() != null) {
+            postRequestDto.setCategory(CategoryMapper.toDto(news.getCateogory()));
+        } else {
+            postRequestDto.setCategory(null);
+        }
 
         postRequestDto.setAuthor(AuthorMapper.toDto(news.getAuthor()));
 

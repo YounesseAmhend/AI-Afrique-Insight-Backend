@@ -6,6 +6,7 @@ public class NewsResponseDto {
     private String id;
     private String title;
     private String body;
+    private CategoryResponseDto category;
     private String url;
     private String imageUrl;
     private AuthorResponseDto author;
@@ -83,6 +84,14 @@ public class NewsResponseDto {
 
     public void setPostDate(Instant postDate) {
         this.postDate = postDate;
+    }
+
+    public CategoryResponseDto getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryResponseDto category) {
+        this.category = category;
     }
 
 }
