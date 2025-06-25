@@ -35,10 +35,12 @@ public class News {
     @JoinColumn(name = "authorId")
     private Author author;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoryId")
+    private Cateogory cateogory;
+
     private Instant createdAt;
     private Instant postDate;
-
-   
 
     public Author getAuthor() {
         return author;
@@ -114,5 +116,13 @@ public class News {
 
     public void setNewsDate(Instant postDate) {
         this.postDate = postDate;
+    }
+
+    public Cateogory getCateogory() {
+        return cateogory;
+    }
+
+    public void setCateogory(Cateogory cateogory) {
+        this.cateogory = cateogory;
     }
 }

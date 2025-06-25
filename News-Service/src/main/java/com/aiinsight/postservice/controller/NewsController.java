@@ -6,18 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aiinsight.postservice.dto.NewsRequestDto;
 import com.aiinsight.postservice.dto.NewsResponseDto;
 import com.aiinsight.postservice.service.NewsService;
-
-import jakarta.validation.Valid;
-
-
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -42,10 +35,10 @@ public class NewsController {
 		return ResponseEntity.ok().body(post);
 	}
 
-
 	// @PostMapping
-	// public ResponseEntity<NewsResponseDto> AddNews(@Valid @RequestBody NewsRequestDto postRequestDto) {
-	// 	NewsResponseDto postResponseDto = newsService.addNews(postRequestDto);
-	// 	return ResponseEntity.ok().body(postResponseDto);
+	// public ResponseEntity<NewsResponseDto> AddNews(@Valid @RequestBody
+	// NewsRequestDto postRequestDto) {
+	// NewsResponseDto postResponseDto = newsService.addNews(postRequestDto);
+	// return ResponseEntity.ok().body(postResponseDto);
 	// }
 }

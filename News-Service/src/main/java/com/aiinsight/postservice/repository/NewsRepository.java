@@ -11,4 +11,6 @@ import com.aiinsight.postservice.model.News;
 public interface NewsRepository extends JpaRepository<News, Long> {
     List<News> findAllByAuthorId(Long authorId);
 
+    List<News> findAllByCateogoryId(Long cateogoryId);
+
 }

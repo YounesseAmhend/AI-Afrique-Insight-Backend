@@ -1,9 +1,13 @@
 package com.aiinsight.postservice;
 
-import com.aiinsight.postservice.controller.NewsController;
-import com.aiinsight.postservice.dto.NewsRequestDto;
-import com.aiinsight.postservice.dto.NewsResponseDto;
-import com.aiinsight.postservice.service.NewsService;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,11 +16,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import com.aiinsight.postservice.controller.NewsController;
+import com.aiinsight.postservice.dto.NewsResponseDto;
+import com.aiinsight.postservice.service.NewsService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
@@ -41,6 +43,5 @@ class NewsServiceApplicationTests {
         assertEquals(1, response.getBody().size());
         verify(newsService, times(1)).findAll();
     }
-
 
 }

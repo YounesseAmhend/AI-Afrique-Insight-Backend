@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.aiinsight.postservice.dto.NewsRequestDto;
 import com.aiinsight.postservice.dto.NewsResponseDto;
 import com.aiinsight.postservice.mapper.NewsMapper;
 import com.aiinsight.postservice.model.News;
@@ -39,8 +38,15 @@ public class NewsService {
                 .toList();
     }
 
+    public List<NewsResponseDto> findByCategoryId(final Long id) {
+        final List<News> news = newsRepository.findAllByCateogoryId(id);
+        return news.stream().map(NewsMapper::toDto)
+                .map(NewsResponseDto::limit)
+                .toList();
+    }
+
     // public NewsResponseDto addNews(NewsRequestDto postRequestDto) {
-    //     News post = newsRepository.save(NewsMapper.toModel(postRequestDto));
-    //     return NewsMapper.toDto(post);
+    // News post = newsRepository.save(NewsMapper.toModel(postRequestDto));
+    // return NewsMapper.toDto(post);
     // }
 }
