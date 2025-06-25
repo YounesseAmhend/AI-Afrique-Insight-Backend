@@ -14,6 +14,7 @@ import com.aiinsight.postservice.repository.NewsRepository;
 
 @Service
 public class AuthorService {
+
     final private AuthorRepository authorRepository;
     private final NewsRepository newsRepository;
 

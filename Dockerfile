@@ -27,7 +27,7 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 # Copy only the built JAR from the builder stage
 # Ensure correct path from the builder stage's WORKDIR and target directory
-COPY --from=builder /app/target/News-Service-0.0.1-SNAPSHOT.jar ./app.jar
+COPY --from=builder /app/target/Post-Service-0.0.1-SNAPSHOT.jar ./app.jar
 
 # Optional: Change ownership of the app files to the non-root user
 # RUN chown appuser:appgroup ./app.jar # Usually not needed if user doesn't need to write
