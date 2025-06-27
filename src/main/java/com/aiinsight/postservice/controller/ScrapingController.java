@@ -7,7 +7,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,7 +77,7 @@ public class ScrapingController {
 
     // Handle the future in the main thread
     try {
-      future.get(3, TimeUnit.SECONDS); // Wait for 3 seconds
+      future.get(5, TimeUnit.SECONDS); // Wait for 3 seconds
       return ResponseEntity.accepted().body("Source addition process started. This may take several minutes.");
     } catch (ExecutionException | TimeoutException | InterruptedException e) {
       return ResponseEntity.accepted().body("Source addition process started. This may take several minutes.");
@@ -87,6 +90,28 @@ public class ScrapingController {
     List<Source> sources = sourceService.getSources();
 
     return ResponseEntity.ok(sources);
+  }
+
+  @PatchMapping("/source/{id}")
+  public ResponseEntity<?> updateSourceUrl(@PathVariable Long id, @RequestBody String newUrl) {
+    try {
+      Source updatedSource = sourceService.updateSourceUrl(id, newUrl);
+      return ResponseEntity.ok(updatedSource);
+    } catch (IllegalArgumentException e) {
+      return ResponseEntity.notFound().build();
+    } catch (Exception e) {
+      return ResponseEntity.status(500).body("Failed to update source: " + e.getMessage());
+    }
+  }
+
+  @DeleteMapping("/source/{id}")
+  public ResponseEntity<?> deleteSource(@PathVariable Long id) {
+    try {
+      sourceService.deleteSource(id);
+      return ResponseEntity.noContent().build();
+    } catch (Exception e) {
+      return ResponseEntity.status(500).body("Failed to delete source: " + e.getMessage());
+    }
   }
 
 }

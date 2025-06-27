@@ -22,4 +22,15 @@ public class SourceService {
     public boolean sourceExists(String url) {
         return sourceRepository.findByUrl(url) != null;
     }
+
+    public Source updateSourceUrl(Long id, String newUrl) {
+        Source source = sourceRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Source not found"));
+        source.setUrl(newUrl);
+        return sourceRepository.save(source);
+    }
+
+    public void deleteSource(Long id) {
+        sourceRepository.deleteById(id);
+    }
 }
