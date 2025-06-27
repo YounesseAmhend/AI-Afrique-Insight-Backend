@@ -9,6 +9,8 @@ import com.aiinsight.postservice.mapper.NewsMapper;
 import com.aiinsight.postservice.model.News;
 import com.aiinsight.postservice.repository.NewsRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class NewsService {
     private final NewsRepository newsRepository;
@@ -26,7 +28,9 @@ public class NewsService {
                 .toList();
     }
 
+    @Transactional
     public NewsResponseDto getNews(Long id) {
+        newsRepository.incrementViewsCount(id);
         News news = newsRepository.findById(id).get();
         return NewsMapper.toDto(news);
     }
@@ -41,6 +45,19 @@ public class NewsService {
     public List<NewsResponseDto> findByCategoryId(final Long id) {
         final List<News> news = newsRepository.findAllByCateogoryId(id);
         return news.stream().map(NewsMapper::toDto)
+                .map(NewsResponseDto::limit)
+                .toList();
+    }
+    public List<NewsResponseDto> getTrending() {
+        List<News> news = newsRepository.findTrendingNewsThisWeek();
+        if (news.isEmpty()) {
+            news = newsRepository.findTrendingNewsThisMonth();
+            if (news.isEmpty()) {
+                news = newsRepository.findTrendingNewsThisYear();
+            }
+        }
+        return news.stream()
+                .map(NewsMapper::toDto)
                 .map(NewsResponseDto::limit)
                 .toList();
     }

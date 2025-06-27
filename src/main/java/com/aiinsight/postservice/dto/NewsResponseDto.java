@@ -8,6 +8,7 @@ public class NewsResponseDto {
     private String body;
     private CategoryResponseDto category;
     private String url;
+    private Long viewCount;
     private String imageUrl;
     private AuthorResponseDto author;
     private Instant createdAt;
@@ -92,6 +93,14 @@ public class NewsResponseDto {
 
     public void setCategory(CategoryResponseDto category) {
         this.category = category;
+    }
+
+    public Long getViewsCount() {
+        return viewCount;
+    }
+
+    public void setViewsCount(Long viewCount) {
+        this.viewCount = viewCount;
     }
 
 }

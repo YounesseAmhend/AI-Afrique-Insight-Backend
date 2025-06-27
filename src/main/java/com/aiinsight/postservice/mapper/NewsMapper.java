@@ -11,9 +11,10 @@ public class NewsMapper {
         postRequestDto.setId(news.getId().toString());
         postRequestDto.setTitle(news.getTitle());
         postRequestDto.setBody(news.getBody());
+        postRequestDto.setViewsCount(news.getViewsCount());
         postRequestDto.setUrl(news.getUrl());
         postRequestDto.setImageUrl(news.getImageUrl());
-        
+
         if (news.getCateogory() != null) {
             postRequestDto.setCategory(CategoryMapper.toDto(news.getCateogory()));
         } else {
