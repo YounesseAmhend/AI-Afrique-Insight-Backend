@@ -34,6 +34,7 @@ public class Source {
     @Column(columnDefinition = "jsonb")
     private String selector;
 
+
     @Column(nullable = false)
     private boolean triggerAfrica;
 
@@ -113,5 +114,7 @@ public class Source {
     public void setUpdatedAt(java.time.OffsetDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+
 
 }

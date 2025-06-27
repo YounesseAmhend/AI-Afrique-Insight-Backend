@@ -2,6 +2,7 @@ package com.aiinsight.postservice.model;
 
 import java.time.Instant;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +19,9 @@ public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
+    private Long viewsCount;
 
     @NotNull
     private String title;
@@ -124,5 +128,17 @@ public class News {
 
     public void setCateogory(Cateogory cateogory) {
         this.cateogory = cateogory;
+    }
+
+    public Long getViewsCount() {
+        return viewsCount;
+    }
+
+    public void setViewsCount(Long viewsCount) {
+        this.viewsCount = viewsCount;
+    }
+
+    public void setPostDate(Instant postDate) {
+        this.postDate = postDate;
     }
 }

@@ -18,4 +18,8 @@ public class SourceService {
     public List<Source> getSources() {
         return sourceRepository.findAll();
     }
+
+    public boolean sourceExists(String url) {
+        return sourceRepository.findByUrl(url) != null;
+    }
 }

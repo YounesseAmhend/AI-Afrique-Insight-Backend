@@ -3,7 +3,6 @@ package com.aiinsight.postservice.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +12,6 @@ import com.aiinsight.postservice.dto.NewsResponseDto;
 import com.aiinsight.postservice.service.NewsService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/news")
 public class NewsController {
 
@@ -33,6 +31,12 @@ public class NewsController {
 	public ResponseEntity<NewsResponseDto> getNews(@PathVariable Long id) {
 		final NewsResponseDto post = newsService.getNews(id);
 		return ResponseEntity.ok().body(post);
+	}
+
+	@GetMapping("/trending")
+	public ResponseEntity<List<NewsResponseDto>> getTrendingNews() {
+		final List<NewsResponseDto> trendingNews = newsService.getTrending();
+		return ResponseEntity.ok().body(trendingNews);
 	}
 
 	// @PostMapping
