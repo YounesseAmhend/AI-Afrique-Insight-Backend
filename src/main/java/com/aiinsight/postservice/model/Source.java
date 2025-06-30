@@ -30,9 +30,8 @@ public class Source {
 
     @Column(unique = true, nullable = false)
     private String url;
-
     @Column(columnDefinition = "jsonb")
-    private String selector;
+    private Object selector;
 
 
     @Column(nullable = false)
@@ -67,11 +66,11 @@ public class Source {
         this.url = url;
     }
 
-    public String getSelector() {
+    public Object getSelector() {
         return selector;
     }
 
-    public void setSelector(String selector) {
+    public void setSelector(Object selector) {
         this.selector = selector;
     }
 

@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.aiinsight.postservice.dto.AddSourceRequest;
 import com.aiinsight.postservice.model.Source;
 import com.aiinsight.postservice.repository.SourceRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class SourceService {
@@ -22,12 +25,11 @@ public class SourceService {
     public boolean sourceExists(String url) {
         return sourceRepository.findByUrl(url) != null;
     }
-
-    public Source updateSourceUrl(Long id, String newUrl) {
-        Source source = sourceRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Source not found"));
-        source.setUrl(newUrl);
-        return sourceRepository.save(source);
+    @Transactional
+    public Source updateSourceUrl(Long id, AddSourceRequest request) {
+        sourceRepository.updateSource(id, request.getUrl(), !request.isContainsAiContent(),
+                !request.isContainsAfricaContent());
+        return sourceRepository.findById(id).get();
     }
 
     public void deleteSource(Long id) {

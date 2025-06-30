@@ -93,9 +93,9 @@ public class ScrapingController {
   }
 
   @PatchMapping("/source/{id}")
-  public ResponseEntity<?> updateSourceUrl(@PathVariable Long id, @RequestBody String newUrl) {
+  public ResponseEntity<?> updateSourceUrl(@PathVariable Long id, @RequestBody AddSourceRequest request) {
     try {
-      Source updatedSource = sourceService.updateSourceUrl(id, newUrl);
+      Source updatedSource = sourceService.updateSourceUrl(id, request);
       return ResponseEntity.ok(updatedSource);
     } catch (IllegalArgumentException e) {
       return ResponseEntity.notFound().build();
