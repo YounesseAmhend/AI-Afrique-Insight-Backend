@@ -1,16 +1,17 @@
 package com.aiinsight.postservice.service;
 
-import com.aiinsight.postservice.model.News;
-import com.aiinsight.postservice.repository.NewsRepository;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import com.aiinsight.postservice.model.News;
+import com.aiinsight.postservice.repository.NewsRepository;
 
 @Service
 public class CsvExportService {
@@ -25,13 +26,12 @@ public class CsvExportService {
         PrintWriter writer = new PrintWriter(out);
         CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
             .builder()
-            .setHeader("ID", "Title", "Body", "URL", "Image URL", "Source ID", "Author Name", "Created At", "Post Date")
-            .build()
-        );
-    ) {
+            .setHeader("ID", "Title", "Body", "URL", "Image URL", "Source ID", "Author Name", "Category", "Created At",
+                "Post Date")
+            .build());) {
       for (News news : newsList) {
         String authorName = (news.getAuthor() != null) ? news.getAuthor().getName() : "N/A";
-
+        String category = (news.getCateogory() != null) ? news.getCateogory().getName() : "N/A";
         csvPrinter.printRecord(
             news.getId(),
             news.getTitle(),
@@ -40,9 +40,9 @@ public class CsvExportService {
             news.getImageUrl(),
             news.getSourceId(),
             authorName,
-            news.getCreatedAt(), // .toString()  automatically
-            news.getPostDate()
-        );
+            category,
+            news.getCreatedAt(), // .toString() automatically
+            news.getPostDate());
       }
 
       csvPrinter.flush();
