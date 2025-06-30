@@ -1,4 +1,3 @@
-
 package com.aiinsight.postservice.service;
 
 import org.springframework.scheduling.annotation.Scheduled;
