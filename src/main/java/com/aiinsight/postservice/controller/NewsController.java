@@ -2,17 +2,18 @@ package com.aiinsight.postservice.controller;
 
 import java.util.List;
 
+import com.aiinsight.postservice.dto.PagedResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.aiinsight.postservice.dto.NewsResponseDto;
 import com.aiinsight.postservice.service.NewsService;
 
 @RestController
 @RequestMapping("/news")
+//@CrossOrigin(origins = "*") // Allows all origins
 public class NewsController {
 
 	private final NewsService newsService;
@@ -22,9 +23,9 @@ public class NewsController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<NewsResponseDto>> getAllNews() {
-		final List<NewsResponseDto> posts = newsService.findAll();
-		return ResponseEntity.ok().body(posts);
+	public ResponseEntity<PagedResponse<NewsResponseDto>> getAllNews(Pageable pageable , @RequestParam(required = false) Long categoryId) {
+		final PagedResponse<NewsResponseDto> posts = newsService.findAll(pageable , categoryId);
+		return ResponseEntity.ok(posts);
 	}
 
 	@GetMapping("/{id}")

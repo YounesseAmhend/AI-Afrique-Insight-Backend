@@ -1,7 +1,11 @@
 package com.aiinsight.postservice.repository;
 
 import java.util.List;
+import java.util.Locale;
 
+import com.aiinsight.postservice.model.Cateogory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -28,4 +32,6 @@ public interface NewsRepository extends JpaRepository<News, Long> {
 
     @Query(value = "SELECT * FROM news WHERE createdAt >= NOW() - INTERVAL '1 year' ORDER BY viewsCount DESC LIMIT 3", nativeQuery = true)
     List<News> findTrendingNewsThisYear();
+
+    Page<News> findByCateogory(Cateogory cateogory, Pageable pageable);
 }

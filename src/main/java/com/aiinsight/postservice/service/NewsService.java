@@ -1,7 +1,14 @@
 package com.aiinsight.postservice.service;
 
 import java.util.List;
+import java.util.Locale;
 
+
+import com.aiinsight.postservice.dto.PagedResponse;
+import com.aiinsight.postservice.model.Cateogory;
+import com.aiinsight.postservice.repository.CateogoryRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.aiinsight.postservice.dto.NewsResponseDto;
@@ -14,9 +21,11 @@ import jakarta.transaction.Transactional;
 @Service
 public class NewsService {
     private final NewsRepository newsRepository;
+    private final CateogoryRepository cateogoryRepository;
 
-    public NewsService(NewsRepository postRepository) {
+    public NewsService(NewsRepository postRepository, CateogoryRepository cateogoryRepository) {
         this.newsRepository = postRepository;
+        this.cateogoryRepository = cateogoryRepository;
     }
 
     public List<NewsResponseDto> findAll() {
@@ -62,8 +71,30 @@ public class NewsService {
                 .toList();
     }
 
-    // public NewsResponseDto addNews(NewsRequestDto postRequestDto) {
-    // News post = newsRepository.save(NewsMapper.toModel(postRequestDto));
-    // return NewsMapper.toDto(post);
-    // }
+    public PagedResponse<NewsResponseDto> findAll(Pageable pageable , Long categoryId) {
+        Page<News> newsPage = newsRepository.findAll(pageable);
+
+        if (categoryId != null) {
+            Cateogory cateogory = cateogoryRepository.findById(categoryId)
+                .orElseThrow();
+            newsPage = newsRepository.findByCateogory(cateogory, pageable);
+        } else {
+            newsPage = newsRepository.findAll(pageable);
+        }
+
+        List<NewsResponseDto> newsDtos = newsPage.getContent().stream()
+            // Use the static method directly on the class
+            .map(NewsMapper::toDto)
+            .map(NewsResponseDto::limit)
+            .toList();
+
+        return new PagedResponse<>(
+            newsDtos,
+            newsPage.getNumber(),
+            newsPage.getTotalPages(),
+            newsPage.getTotalElements(),
+            newsPage.isLast()
+        );
+    }
+
 }
