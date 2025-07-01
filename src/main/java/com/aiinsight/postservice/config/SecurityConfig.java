@@ -3,8 +3,13 @@ package com.aiinsight.postservice.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -16,12 +21,11 @@ import java.util.List;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
-
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
-        // This will apply the corsConfigurationSource bean
         .cors(withDefaults())
         .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(auth -> auth
@@ -33,33 +37,26 @@ public class SecurityConfig {
 
     return http.build();
   }
-
-  /**
-   * Defines the CORS configuration for the application.
-   * This bean is automatically picked up by the .cors(withDefaults()) in the securityFilterChain.
-   * @return CorsConfigurationSource
-   */
   @Bean
-  public CorsConfigurationSource corsConfigurationSource() {
+  public UserDetailsService userDetailsService() {
+    UserDetails admin = User.withDefaultPasswordEncoder()
+        .username("admin")
+        .password("password") // Replace with a strong password, preferably from a config file
+        .roles("ADMIN")
+        .build();
+    return new InMemoryUserDetailsManager(admin);
+  }
+
+  @Bean
+  CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
-
-    // Specify the allowed origins. Use your frontend's URL in production.
-    // Using "*" is fine for development but less secure.
-    configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:4200", "http://your-frontend-domain.com","http://localhost:3001"));
-
-    // Specify the allowed HTTP methods
-    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-
-    // Specify the allowed headers
-    configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Auth-Token"));
-
-    // Allow credentials (e.g., cookies, authorization headers)
-    configuration.setAllowCredentials(true);
-
-    // Apply the CORS configuration to all paths
+    configuration.setAllowedOrigins(List.of("http://localhost:3000"));
+    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
+    configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
-
     return source;
   }
+
+
 }
