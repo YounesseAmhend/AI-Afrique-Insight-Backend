@@ -41,7 +41,7 @@ public class SecurityConfig {
   public UserDetailsService userDetailsService() {
     UserDetails admin = User.withDefaultPasswordEncoder()
         .username("admin")
-        .password("password") // Replace with a strong password, preferably from a config file
+        .password("password") 
         .roles("ADMIN")
         .build();
     return new InMemoryUserDetailsManager(admin);
