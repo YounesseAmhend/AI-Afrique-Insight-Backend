@@ -57,12 +57,14 @@ public class AiCompanyService {
                 "category": "AI category like 'AI Hardware & Infrastructure', 'Machine Learning', 'Computer Vision', etc.",
                 "growth": "Growth description",
                 "url": "/companies/company-name-slug"
+                "image": "https://example.com/image.jpg"
             }
             
             Generate 10 companies per region. Return only a valid JSON array, with no additional text or markdown.
             Make sure the region is one of: north-america, europe, asia, other.
             Make sure the logo follows the pattern: /placeholder.svg?height=80&width=80.
             Make sure the url follows the pattern: /companies/company-name-in-lowercase-with-dashes.
+            Make sure the image follows the pattern: https://example.com/image.jpg.
             """,
         null
     );

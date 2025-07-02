@@ -35,7 +35,7 @@ COPY --from=builder /app/target/Post-Service-0.0.1-SNAPSHOT.jar ./app.jar
 # Switch to the non-root user
 USER appuser
 
-EXPOSE 4000
+EXPOSE 3014
 
 # Run the application using the JRE
 ENTRYPOINT ["java", "-jar", "app.jar"]
