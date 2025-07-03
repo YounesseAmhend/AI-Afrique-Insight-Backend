@@ -7,6 +7,7 @@ public class AiCompanyDto {
   private String funding;
   private String region;
   private String category;
+  private String image;
   private String growth;
   private String url;
 
@@ -14,13 +15,14 @@ public class AiCompanyDto {
   public AiCompanyDto() {}
 
   public AiCompanyDto(String name, String logo, String description, String funding,
-                      String region, String category, String growth, String url) {
+                      String region, String category, String growth, String url, String image) {
     this.name = name;
     this.logo = logo;
     this.description = description;
     this.funding = funding;
     this.region = region;
     this.category = category;
+    this.image = image;
     this.growth = growth;
     this.url = url;
   }
@@ -48,6 +50,12 @@ public class AiCompanyDto {
   public void setGrowth(String growth) { this.growth = growth; }
 
   public String getUrl() { return url; }
-  public void setUrl(String url) { this.url = url; }
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+  public String getImage() { return image; }
+  public void setImage(String image) { this.image = image; }
 
 }

@@ -113,6 +113,7 @@ public class AiCompanyService {
         company.setCategory(companyNode.get("category").asText());
         company.setGrowth(companyNode.get("growth").asText());
         company.setUrl(companyNode.get("url").asText());
+        company.setImage(companyNode.get("image").asText());
 
         companies.add(company);
       }
@@ -147,7 +148,8 @@ public class AiCompanyService {
         company.getRegion(),
         company.getCategory(),
         company.getGrowth(),
-        company.getUrl()
+        company.getUrl(),
+        company.getImage()
     );
   }
 }

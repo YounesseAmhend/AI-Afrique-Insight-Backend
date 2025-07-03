@@ -26,11 +26,16 @@ public class AiCompany {
   @Column
   private String region;
 
+
   @Column
   private String category;
 
   @Column(columnDefinition = "TEXT")
   private String growth;
+
+
+  @Column(columnDefinition = "TEXT")
+  private String image;
 
   @Column
   private String url;
