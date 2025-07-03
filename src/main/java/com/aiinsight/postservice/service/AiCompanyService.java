@@ -1,22 +1,19 @@
 package com.aiinsight.postservice.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.aiinsight.postservice.dto.AiCompanyDto;
 import com.aiinsight.postservice.model.AiCompany;
 import com.aiinsight.postservice.repository.AiCompanyRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.genai.types.GenerateContentResponse;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-
 import com.google.genai.Client;
-import com.google.genai.ResponseStream;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import com.google.genai.types.GenerateContentResponse;
 
 @Service
 public class AiCompanyService {
@@ -25,12 +22,10 @@ public class AiCompanyService {
   private final ObjectMapper objectMapper;
   private final Client client = new Client();
 
-
   public AiCompanyService(AiCompanyRepository aiCompanyRepository) {
     this.aiCompanyRepository = aiCompanyRepository;
     this.objectMapper = new ObjectMapper();
   }
-
 
   public List<AiCompanyDto> getAllCompanies() {
     return aiCompanyRepository.findAllOrderByCreatedAtDesc()
@@ -38,9 +33,6 @@ public class AiCompanyService {
         .map(this::convertToDto)
         .collect(Collectors.toList());
   }
-
-
-
 
   @Transactional
   public List<AiCompanyDto> generateAndSaveAiCompanies() {
@@ -59,16 +51,14 @@ public class AiCompanyService {
                 "url": "/companies/company-name-slug"
                 "image": "https://example.com/image.jpg"
             }
-            
+
             Generate 10 companies per region. Return only a valid JSON array, with no additional text or markdown.
             Make sure the region is one of: north-america, europe, asia, other.
             Make sure the logo follows the pattern: /placeholder.svg?height=80&width=80.
             Make sure the url follows the pattern: /companies/company-name-in-lowercase-with-dashes.
             Make sure the image follows the pattern: https://example.com/image.jpg.
             """,
-        null
-    );
-
+        null);
 
     // CORRECT: Use the .text() helper method from the provided source
     String jsonText = response.text();
@@ -149,7 +139,6 @@ public class AiCompanyService {
         company.getCategory(),
         company.getGrowth(),
         company.getUrl(),
-        company.getImage()
-    );
+        company.getImage());
   }
 }
