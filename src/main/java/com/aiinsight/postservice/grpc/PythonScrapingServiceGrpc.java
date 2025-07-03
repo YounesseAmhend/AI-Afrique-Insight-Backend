@@ -16,7 +16,7 @@ public class PythonScrapingServiceGrpc {
 
 
   public PythonScrapingServiceGrpc(
-      @Value("${grpc.client.python-scraper.address:0.0.0.0}") String address , // Updated property name for clarity
+      @Value("${grpc.client.python-scraper.address:scraper}") String address , // Updated property name for clarity
       @Value("${grpc.client.python-scraper.port:3015}") int port // Updated property name for clarity
   ) {
     log.info("Connecting to gRPC server at {}:{}", address, port);
