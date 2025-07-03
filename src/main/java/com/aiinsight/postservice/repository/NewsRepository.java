@@ -34,4 +34,8 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     List<News> findTrendingNewsThisYear();
 
     Page<News> findByCateogory(Cateogory cateogory, Pageable pageable);
+
+    List<News> findAllByOrderByPostDateDesc();
+
+    Page<News> findAllByOrderByPostDateDesc(Pageable pageable);
 }

@@ -3,7 +3,6 @@ package com.aiinsight.postservice.service;
 import java.util.List;
 import java.util.Locale;
 
-
 import com.aiinsight.postservice.dto.PagedResponse;
 import com.aiinsight.postservice.model.Cateogory;
 import com.aiinsight.postservice.repository.CateogoryRepository;
@@ -29,11 +28,10 @@ public class NewsService {
     }
 
     public List<NewsResponseDto> findAll() {
-        final List<News> newsList = newsRepository.findAll();
+        final List<News> newsList = newsRepository.findAllByOrderByPostDateDesc();
         return newsList.stream()
                 .map(NewsMapper::toDto)
                 .map(NewsResponseDto::limit) // So we don't just send load of data while we are not going to use it
-
                 .toList();
     }
 
@@ -57,6 +55,7 @@ public class NewsService {
                 .map(NewsResponseDto::limit)
                 .toList();
     }
+
     public List<NewsResponseDto> getTrending() {
         List<News> news = newsRepository.findTrendingNewsThisWeek();
         if (news.isEmpty()) {
@@ -71,30 +70,29 @@ public class NewsService {
                 .toList();
     }
 
-    public PagedResponse<NewsResponseDto> findAll(Pageable pageable , Long categoryId) {
-        Page<News> newsPage = newsRepository.findAll(pageable);
+    public PagedResponse<NewsResponseDto> findAll(Pageable pageable, Long categoryId) {
+        Page<News> newsPage;
 
         if (categoryId != null) {
             Cateogory cateogory = cateogoryRepository.findById(categoryId)
-                .orElseThrow();
+                    .orElseThrow();
             newsPage = newsRepository.findByCateogory(cateogory, pageable);
         } else {
-            newsPage = newsRepository.findAll(pageable);
+            newsPage = newsRepository.findAllByOrderByPostDateDesc(pageable);
         }
 
         List<NewsResponseDto> newsDtos = newsPage.getContent().stream()
-            // Use the static method directly on the class
-            .map(NewsMapper::toDto)
-            .map(NewsResponseDto::limit)
-            .toList();
+                // Use the static method directly on the class
+                .map(NewsMapper::toDto)
+                .map(NewsResponseDto::limit)
+                .toList();
 
         return new PagedResponse<>(
-            newsDtos,
-            newsPage.getNumber(),
-            newsPage.getTotalPages(),
-            newsPage.getTotalElements(),
-            newsPage.isLast()
-        );
+                newsDtos,
+                newsPage.getNumber(),
+                newsPage.getTotalPages(),
+                newsPage.getTotalElements(),
+                newsPage.isLast());
     }
 
 }
